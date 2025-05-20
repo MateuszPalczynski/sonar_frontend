@@ -1,3 +1,9 @@
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=MateuszPalczynski_sonar_frontend&metric=bugs)](https://sonarcloud.io/summary/new_code?id=MateuszPalczynski_sonar_frontend)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=MateuszPalczynski_sonar_frontend&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=MateuszPalczynski_sonar_frontend)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=MateuszPalczynski_sonar_frontend&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=MateuszPalczynski_sonar_frontend)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=MateuszPalczynski_sonar_frontend&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=MateuszPalczynski_sonar_frontend)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
