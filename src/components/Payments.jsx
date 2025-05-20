@@ -13,12 +13,14 @@ function Payments() {
       await axios.post('http://localhost:1323/payments', {
         cart_id: cartId,
         card_number: cardNumber,
-        amount: cart.reduce((sum, item) => sum + item.price, 0)
+        amount: cart.reduce((sum, item) => sum + item.price, 0),
       });
       setMessage('Płatność zakończona sukcesem!');
-      fetchCart([]);
+
+      fetchCart();
     } catch (error) {
-      console.log('Błąd płatności: ${error}');
+      console.error(`Błąd płatności: ${error.message}`);
+      setMessage('Płatność nie powiodła się. Spróbuj ponownie.');
     }
   };
 
