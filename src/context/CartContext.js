@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect, useContext, useCallback } from 'react';
+import React, { createContext, useState, useEffect, useContext, useCallback, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 const CartContext = createContext();
@@ -15,7 +16,7 @@ export function CartProvider({ children }) {
   const addToCart = async (productId) => {
     if (!cartId) await createNewCart();
     await axios.post(`http://localhost:1323/carts/${cartId}/products`, {
-      product_id: productId
+      product_id: productId,
     });
     fetchCart();
   };
@@ -29,12 +30,14 @@ export function CartProvider({ children }) {
 
   const removeFromCart = async (productId) => {
     if (!cartId) return;
-    
+
     try {
-      await axios.delete(`http://localhost:1323/carts/${cartId}/products/${productId}`);
+      await axios.delete(
+        `http://localhost:1323/carts/${cartId}/products/${productId}`
+      );
       fetchCart();
     } catch (error) {
-      console.error('Błąd usuwania produktu:', error);
+      console.error('Error removing product:', error);
     }
   };
 
@@ -42,11 +45,20 @@ export function CartProvider({ children }) {
     if (cartId) fetchCart();
   }, [cartId, fetchCart]);
 
+  const value = useMemo(
+    () => ({ cart, addToCart, removeFromCart, cartId, fetchCart }),
+    [cart, addToCart, removeFromCart, cartId, fetchCart]
+  );
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, cartId, fetchCart }}>
+    <CartContext.Provider value={value}>
       {children}
     </CartContext.Provider>
   );
 }
+
+CartProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export const useCart = () => useContext(CartContext);

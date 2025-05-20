@@ -18,7 +18,7 @@ function Payments() {
       setMessage('Płatność zakończona sukcesem!');
       fetchCart([]);
     } catch (error) {
-      setMessage('Błąd płatności');
+      console.log('Błąd płatności: ${error}');
     }
   };
 
